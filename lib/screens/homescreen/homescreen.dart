@@ -12,14 +12,17 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   int val = 0;
 
   @override
   Widget build(BuildContext context) {
     const activeCardColor = Color(0xFF1D1E33);
     const inactiveCardColor = Color(0xFF111328);
-    double width = MediaQuery.of(context).size.width; // top padding
-    kBottomNavigationBarHeight;
+    double width = MediaQuery.of(context).size.width;
+    bool isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+
+
     double size = MediaQuery.of(context).size.height - // total height
         MediaQuery.of(context).padding.top - // top padding
         kBottomNavigationBarHeight;
@@ -34,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 20,
             ),
             SizedBox(
-              height: 160,
+              height: isPortrait?160:200,
               width: double.infinity,
               child: PicHorizontalContainer(),
             ),
@@ -42,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 320,
               child: GridView.count(
-                childAspectRatio: 1.3,
+                childAspectRatio: isPortrait? 1.3: 3,
                 primary: false,
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 crossAxisSpacing: 20,
